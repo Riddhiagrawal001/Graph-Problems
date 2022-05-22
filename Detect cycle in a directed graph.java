@@ -32,3 +32,38 @@ class Solution {
         return false;
     }
 }
+//BFS
+ static boolean checkCycleBFS(int V, ArrayList<ArrayList<Integer>> adj){
+        int[] indegree=new int[V];
+        Queue<Integer> q=new LinkedList<>();
+          int index=0;
+
+        for(int i=0;i<V;i++){
+            for(Integer x: adj.get(i))
+              indegree[x]++;
+        }
+
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0)
+              q.add(i);
+        }
+        int count=0;
+        while(!q.isEmpty()){
+            int n=q.poll();
+            count++;
+            for(Integer a: adj.get(n)){
+                indegree[a]--;
+                if(indegree[a]==0)
+                  q.add(a);
+            }
+        }
+
+      if(count==V) return false;
+      return true;
+    }
+    // Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        return checkCycleBFS(V,adj);
+    }
+}
+
