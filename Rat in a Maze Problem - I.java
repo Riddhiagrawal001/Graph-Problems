@@ -1,7 +1,9 @@
 /* the idea is to go to everywhere form the current position and then if there is a blockage then
 backtrack to the place making the visited as unvisited */
 
-
+/* tc: O(n^2)^4 [because we are iterating through every position in the matrix & from every cell we are going to 4 
+different directions]
+sc:O (L*X) l=length of the path x=no of paths */
 
 class Solution {
     static void dfs(int i,int j, int[][] m ,ArrayList<String> res, boolean[][] visited,String s,int n){
